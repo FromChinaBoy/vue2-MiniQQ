@@ -1,6 +1,6 @@
 <template>
   <div class="dialog">
-    <mu-appbar :title="userData.self.name"
+    <mu-appbar :title="userData.friend.name"
                :zDepth="0">
       <mu-icon-button icon="arrow_back"
                       slot="left"
@@ -70,7 +70,8 @@ export default {
   computed: {
     ...mapState({
       self: state => state.data.self,
-      headerTitle: 'headerTitle'
+      headerTitle: 'headerTitle',
+      activeId: 'activeId'
     }),
     userData() {
       return {
@@ -93,9 +94,11 @@ export default {
     },
     sendValue() {
       if (this.value.length) {
-        this.$store.dispatch('sendValue', {
-          _id: this.userData.friend._id,
+        this.$store.dispatch('sendValue2', {
+          _id: this.activeId,
+          phone_num: this.userData.friend.phone_num,
           message: this.value,
+          user_key: this.userData.self.user_key,
           that: this
         })
       } else {

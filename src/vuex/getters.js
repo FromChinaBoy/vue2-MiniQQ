@@ -13,6 +13,7 @@ const getters = {
       let friend = state.data.friends.filter(i => i._id === x._id)[0]
       x.friend = friend
     })
+    state.isAjax = true
     return list
   }
 }

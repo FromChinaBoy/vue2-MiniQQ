@@ -17,7 +17,7 @@
                    slot="leftAvatar" />
         <!--预览信息-->
         <span slot="describe">
-                        <span style="color: rgba(0, 0, 0, .5)">{{item.list[item.list.length-1].message}}</span>
+            <span style="color: rgba(0, 0, 0, .5)">{{item.list[item.list.length-1].message}}</span>
         </span>
         <!--时间与待处理-->
         <div class="item-right"
@@ -33,8 +33,7 @@
       <!--阻止时间冒泡-->
       <div class="delete"
            @click.stop="removeM(item._id)">删除</div>
-    </div>
-  
+      </div>
   </mu-list>
 </template>
 <script>
@@ -139,7 +138,7 @@ export default {
   .item-right
     position:relative
     .time
-      display: inline-block
+      display: block
       position: absolute
       top: -10px
       left: -16px

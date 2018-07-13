@@ -45,6 +45,7 @@ const mutations = {
   },
   // 消息队列，聊天队列处理
   changeList: (state, obj) => {
+    console.log(obj)
     let now = new Date()
     let time = `${now.getHours()}:${now.getMinutes()}`
     // 判断信息是自己的还是ai的，然后插入聊天队列中
@@ -64,6 +65,7 @@ const mutations = {
         }
       })
     }
+    console.log(state.messageList)
   },
   // 删除消息
   removeMessage(state, { _id }) {

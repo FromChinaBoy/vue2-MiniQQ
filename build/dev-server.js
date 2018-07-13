@@ -26,22 +26,22 @@ var app = express()
 const superagent = require('superagent')
 
 // mock假数据
-let appData = require('../mockdata.json')
-let self = appData.self
-let friend = appData.friend
+// let appData = require('../mockdata.json')
+// let self = appData.self
+// let friend = appData.friend
 
 let apiRoutes = express.Router()
 
-apiRoutes.get('/self', (req, res) => {
-  res.json({
-    data:self,
-  })
-})
-apiRoutes.get('/friends', (req, res) => {
-  res.json({
-    data:friend,
-  })
-})
+// apiRoutes.get('/self', (req, res) => {
+//   res.json({
+//     data:self,
+//   })
+// })
+// apiRoutes.get('/friends', (req, res) => {
+//   res.json({
+//     data:friend,
+//   })
+// })
 
 // 聊天机器人api接入
 apiRoutes.get('/robotapi', (req, res) => {
@@ -108,7 +108,7 @@ app.use(hotMiddleware)
 var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
 app.use(staticPath, express.static('./static'))
 
-var uri = 'http://localhost:' + port
+var uri = '0.0.0.0:' + port
 
 devMiddleware.waitUntilValid(function () {
   console.log('> Listening at ' + uri + '\n')
@@ -121,7 +121,7 @@ module.exports = app.listen(port, function (err) {
   }
 
   // when env is testing, don't need open it
-  if (autoOpenBrowser && process.env.NODE_ENV !== 'testing') {
-    opn(uri)
-  }
+  // if (autoOpenBrowser && process.env.NODE_ENV !== 'testing') {
+  //   opn(uri)
+  // }
 })

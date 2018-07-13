@@ -42,7 +42,7 @@
                    slot="leftAvatar"
                    color="#2e2c6b"
                    backgroundColor="#eee"
-                   :size="40"
+                   :size="100"
                    :iconSize="20" />
         <span slot="describe">
                     <span style="color: rgba(0, 0, 0, .5)">You are my destiny</span>

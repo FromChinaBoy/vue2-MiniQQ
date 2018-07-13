@@ -38,12 +38,20 @@
                color="#2e2c6b" />
     </mu-list-item>
   
+    <mu-list-item title="logout"
+                  @click.native="logout">
+      <mu-icon slot="left"
+               value="settings_power"
+               color="#2e2c6b" />
+    </mu-list-item>
+
     <mu-list-item title="close"
                   @click.native="showSidebar">
       <mu-icon slot="left"
                value="close"
                color="#2e2c6b" />
     </mu-list-item>
+    
   </mu-drawer>
 </template>
 
@@ -60,6 +68,10 @@ export default {
     showPersonindex_x() {
       this.showSidebar()
       this.showPersonindex()
+    },
+    logout () {
+      localStorage.clear()
+      location.reload()
     }
   }
 }
@@ -82,6 +94,10 @@ export default {
         top: 5vh/*偏移*/
         left: 56% /*偏移*/
         font-size: 1.8em
+        width: 11rem
+        overflow:hidden;
+        text-overflow:ellipsis;
+        white-space:nowrap
     .bottom
       padding: 20px
       padding-left: 40px

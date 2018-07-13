@@ -6,9 +6,9 @@ import App from './App'
 import router from './router/index'
 import store from './vuex/store'
 import MuseUi from './muse-ui.config'
-// import './common/stylus/base.styl'
+// import 'muse-ui/dist/muse-ui.css'
+// // import './common/stylus/base.styl'
 Vue.use(MuseUi)
-
 // 懒加载模块,由于暂时没有几张图，主要为后续使用做准备，使用方法见https://github.com/hilongjw/vue-lazyload
 import VueLazyload from 'vue-lazyload'
 Vue.use(VueLazyload, {
@@ -22,7 +22,7 @@ Vue.use(VueLazyload, {
 // 在vue原型中添加$http方法等于axios
 Vue.prototype.$http = axios
 // 设置默认打开的页面
-router.replace('message')
+router.replace('login')
 
 Vue.config.productionTip = false
 
@@ -34,9 +34,9 @@ new Vue({
   router,
   // 注入vuex的store
   store,
-  components: { App },
+  components: { App }
   // 组件创建前，进行异步数据数据请求
-  beforeCreate() {
-    this.$store.dispatch('getAllData', this)
-  }
+  // beforeCreate() {
+  //   this.$store.dispatch('getAllData', this)
+  // }
 })
