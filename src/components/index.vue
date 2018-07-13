@@ -54,7 +54,8 @@ export default {
   },
   data() {
     return {
-      websock: ''
+      websock: '',
+      user_key: this.$store.state.data.self.user_key
     }
   },
   created() {
@@ -88,7 +89,7 @@ export default {
     },
     /* 初始化websochet */
     websochetInit () {
-      this.websock = new WebSocket('ws://111.230.205.134:9503?user_key=' + this.$store.state.data.self.user_key)
+      this.websock = new WebSocket('ws://111.230.205.134:9503?user_key=' + this.user_key)
       this.websock.onmessage = this.websocketMessage
     },
     /* websochet发送信息 */
@@ -99,11 +100,17 @@ export default {
     websocketMessage (e) {
       console.log(e)
       const data = JSON.parse(e.data)
+      // 40000 连接错误，权限问题
+      // 0 短信接受
+      // 10001 通知更新好友
       if (data.code === 40000) {
         console.error(data.msg)
       }
       if (data.code === 0) {
         this.$store.commit('changeList', { _id: data._id, message: data.message })
+      }
+      if (data.code === 10001) {
+        this.$store.dispatch('getFriend', { user_key: this.user_key, that: this })
       }
       // let _id = this.userData.friend._id
       // this.$store.commit('changeList', { _id, message: data.message })

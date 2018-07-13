@@ -35,6 +35,14 @@ const mutations = {
     // ajax状态更改为结束
     state.isAjax = true
   },
+  // ajax获取到用户数据
+  getDataFriend: (state, friends) => {
+    state.data.friends = friends
+  },
+  // ajax获取到message
+  getDataMessage: (state, message) => {
+    state.messageList = message
+  },
   // 标题
   changTitle: (state, { title }) => {
     state.headerTitle = title
@@ -65,7 +73,7 @@ const mutations = {
         }
       })
     }
-    console.log(state.messageList)
+    localStorage.setItem('messageList', JSON.stringify(state.messageList))
   },
   // 删除消息
   removeMessage(state, { _id }) {

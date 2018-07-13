@@ -29,10 +29,10 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
        '/api': {
-            target: 'http://111.230.205.134:9503', //源地址 
+            target: 'http://111.230.205.134:9502', //源地址 
             changeOrigin: true, //改变源 
             pathRewrite: { 
-              '^/api': 'http://111.230.205.134:9503' //路径重写 
+              '^/api': 'http://111.230.205.134:9502' //路径重写 
             } 
        },
        '/websocket': {

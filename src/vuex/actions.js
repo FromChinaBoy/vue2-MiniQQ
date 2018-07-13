@@ -89,6 +89,35 @@ const actions = {
     // } else {
     //   commit('changeList', { _id, message: '暂不支持此类对话' })
     // }
+  },
+  // 真实对话
+  getFriend: async ({ commit }, { user_key, that }) => {
+    // 进行ajax请求，此处的that是从组件内传来的对象this
+    await that.$http.get('/api/?s=index/Chat/getChatAndFriend', {
+      params: {
+        user_key: user_key
+      }
+    }).then(res => {
+      // 将获取到的数据赋值给先前设置的变量
+      let data = res.data.data
+      console.log(data)
+      commit('getDataFriend', data.friend)
+      commit('getDataMessage', data.chat_list)
+      // that.$store.state.data.friends = data.friend
+      localStorage.messageList = JSON.stringify(data.chat_list)
+      localStorage.friends = JSON.stringify(data.friend)
+    })
+    // // 判断获取到的数据类型，在进行对应操作
+    // if (robotData.code === 100000) {
+    //   commit('changeList', { _id, message: robotData.text })
+    // } else if (robotData.code === 200000) {
+    //   let data = robotData.text + robotData.url
+    //   commit('changeList', { _id, message: data })
+    // } else if (robotData.code === 302000) {
+    //   commit('changeList', { _id, message: '暂不支持此类对话' })
+    // } else {
+    //   commit('changeList', { _id, message: '暂不支持此类对话' })
+    // }
   }
 }
 
