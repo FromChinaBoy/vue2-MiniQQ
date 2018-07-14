@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import global_ from '../common/script/Global'
 import { mapState } from 'vuex'
 // 加载需要用到的组件
 import bottomTab from './bottomtab/bottom-tab'
@@ -89,7 +90,7 @@ export default {
     },
     /* 初始化websochet */
     websochetInit () {
-      this.websock = new WebSocket('ws://111.230.205.134:9503?user_key=' + this.user_key)
+      this.websock = new WebSocket(global_.websocketApiUrl + '?user_key=' + this.user_key)
       this.websock.onmessage = this.websocketMessage
     },
     /* websochet发送信息 */

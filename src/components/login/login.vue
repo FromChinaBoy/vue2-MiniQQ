@@ -12,11 +12,12 @@
       <div class="login-item">
         <input type="text" placeholder="验证码" v-model="code"/>
       </div>
-      <button type="button" class="submit-btn" id="submit-btn" @click="submit">进入平台</button>
+      <button type="button" class="submit-btn" id="submit-btn" @click="submit">试玩</button>
     </form>
   </div>
 </template>
 <script>
+import global_ from '../../common/script/Global'
 import { mapState } from 'vuex'
 export default {
   name: 'login',
@@ -44,8 +45,7 @@ export default {
         return
       }
       this.isSend = true
-
-      this.$http.get('/api/?s=index/Login/sendMsm', {
+      this.$http.get(global_.httpApiUrl + '?s=index/Login/sendMsm', {
         params: {
           phone_num: mobile
         }
@@ -86,7 +86,7 @@ export default {
         alert('请输入手机号码或者验证码')
         return
       }
-      this.$http.get('/api/?s=index/Login/dologin', {
+      this.$http.get(global_.httpApiUrl + '?s=index/Login/dologin', {
         params: {
           phone_num: mobile,
           code: code

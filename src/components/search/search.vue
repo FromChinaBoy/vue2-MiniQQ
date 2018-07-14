@@ -69,7 +69,7 @@ export default {
       } else {
         // 是数字
         this.friend = this.friends.filter(x => {
-          if (x.phone.indexOf(val) !== -1) {
+          if (x.phone_num.indexOf(val) !== -1) {
             return true
           } else {
             return false

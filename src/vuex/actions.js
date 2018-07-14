@@ -1,7 +1,7 @@
 // actions里存放的是异步操作
 // 由于vuex中的state的变更只能由mutations进行操作，所以actions不直接进行数据操作，而是调用mutations方法
 // 以下出现的that都是vue实例对象，因为把axios绑定在了Vue原型上，vuex无法调用，所以这里需要传入this
-
+import global_ from '../common/script/Global'
 const actions = {
   // 异步获取基础数据
   // 这里使用了es7的async函数，相当于封装了promis的generator
@@ -23,7 +23,7 @@ const actions = {
   },
   updateFriend: async ({ commit }, { param, that }) => {
     let friends = {}
-    await that.$http.get('/api/?s=index/Chat/getChatAndFriend&user_key=' + param.user_key)
+    await that.$http.get(global_.httpApiUrl + '?s=index/Chat/getChatAndFriend&user_key=' + param.user_key)
       .then(({ data }) => {
         friends = data.friend
       })
@@ -67,7 +67,7 @@ const actions = {
     // 处理输入的内容，设置self为true，作为一个标记。
     commit('changeList', { self: true, _id, message })
     // 进行ajax请求，此处的that是从组件内传来的对象this
-    await that.$http.get('/api/?s=index/Chat/push', {
+    await that.$http.get(global_.httpApiUrl + '?s=index/Chat/push', {
       params: {
         phone_num: phone_num,
         message: message,
@@ -93,7 +93,7 @@ const actions = {
   // 真实对话
   getFriend: async ({ commit }, { user_key, that }) => {
     // 进行ajax请求，此处的that是从组件内传来的对象this
-    await that.$http.get('/api/?s=index/Chat/getChatAndFriend', {
+    await that.$http.get(global_.httpApiUrl + '?s=index/Chat/getChatAndFriend', {
       params: {
         user_key: user_key
       }
